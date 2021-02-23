@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Utransit.RPC.Protos";
+import "google/protobuf/timestamp.proto";
+
+
+service Voucher{
+	rpc UploadVoucher (stream VoucherRequest) returns (VoucherResponse);
+	rpc UpdateVoucher (UpdateVoucherRequest) returns (VoucherResponse);
+}
+
+message VoucherRequest {
+  string voucherId = 1;
+  float amount = 2;
+  bool used = 3;
+  string usedBy = 4;
+  google.protobuf.Timestamp usedOn = 5;
+  google.protobuf.Timestamp CreatedOn = 6;
+  int32 state = 7;
+}
+
+message VoucherResponse {
+  bool issuccessful = 1;
+  string message = 2;
+}
+
+message UpdateVoucherRequest{
+	string voucherId = 1;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "Utransit.RPC.Protos";
+
+service StudentRpc{
+	rpc AddStudent (stream AddStudentRequest) returns (stream Response);
+	rpc BuyVoucher (BuyVoucherRequest) returns (Response);
+}
+
+message AddStudentRequest {
+  string indexNumber = 1;
+}
+
+message Response {
+  bool issuccessful = 1;
+  string message = 2;
+}
+
+message BuyVoucherRequest{
+	string voucherId = 1;
+	string indexNumber = 2;
+}
